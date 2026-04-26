@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erdem Sarıyıldız | TEKNOFEST Projeleri</title>
+    <style>
+        :root {
+            --primary: #00d2ff;
+            --accent: #e81c24;
+            --bg: #0f172a;
+            --card-bg: rgba(255, 255, 255, 0.07);
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('arkaplan.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            margin: 0;
+            scroll-behavior: smooth;
+        }
+        nav {
+            background: rgba(15, 23, 42, 0.9);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; font-size: 0.9rem; transition: 0.3s; }
+        nav a:hover { color: var(--primary); }
+        .container { max-width: 1100px; margin: 120px auto 50px; padding: 0 20px; }
+        .header { text-align: center; margin-bottom: 80px; }
+        h1 { font-size: clamp(2rem, 8vw, 3.5rem); color: var(--primary); margin: 0; text-transform: uppercase; letter-spacing: 2px; }
+        .section-title { color: var(--primary); border-left: 5px solid var(--accent); padding-left: 15px; margin: 50px 0 30px; text-transform: uppercase; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        .card { background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 30px; transition: 0.4s ease; backdrop-filter: blur(10px); display: flex; flex-direction: column; justify-content: space-between; }
+        .card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); background: rgba(255, 255, 255, 0.12); }
+        .card h3 { color: var(--primary); margin: 0 0 10px 0; font-size: 1.4rem; }
+        .card p { font-size: 0.95rem; opacity: 0.85; line-height: 1.6; }
+        .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+        .btn { padding: 12px; text-align: center; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 0.85rem; transition: 0.3s; }
+        .btn-main { background: var(--primary); color: #0f172a; }
+        .btn-pdf { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); }
+        .btn:hover { opacity: 0.8; transform: scale(1.02); }
+        .tag { font-size: 0.65rem; background: var(--accent); padding: 4px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 12px; display: inline-block; }
+        footer { text-align: center; padding: 80px 20px; opacity: 0.6; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#baslik">Giriş</a>
+        <a href="#projeler">Projeler</a>
+        <a href="#hakkimda">Vizyon</a>
+        <a href="#iletisim">İletişim</a>
+    </nav>
+    <div class="container">
+        <section id="baslik" class="header">
+            <span class="tag">Millî Teknoloji Hamlesi</span>
+            <h1>Erdem Sarıyıldız</h1>
+            <p style="font-size: 1.2rem; margin-top: 15px;">Matematik Öğretmeni | Yazılım Geliştirici</p>
+        </section>
+        <section id="projeler">
+            <h2 class="section-title">TEKNOFEST Projelerimiz</h2>
+            <div class="grid">
+                <div class="card">
+                    <div>
+                        <span class="tag">Eğitim Teknolojileri</span>
+                        <h3>Medi-MR: MR Anatomi</h3>
+                        <p>Karma gerçeklik ortamında 6 farklı anatomik sistemin incelenebildiği çok kullanıcılı eğitim simülasyonu.</p>
+                    </div>
+                    <div class="btn-group">
+                        <a href="Medi_Mr.pdf" target="_blank" class="btn btn-pdf" style="grid-column: span 2;">Proje Detaylarını Oku (PDF)</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <span class="tag">Eğitim Teknolojileri</span>
+                        <h3>Fikimatik</h3>
+                        <p>Unity tabanlı etkileşimli Fizik, Kimya ve Matematik simülasyon uygulaması.</p>
+                    </div>
+                    <div class="btn-group">
+                        <a href="https://drive.google.com/file/d/1BSaBHxzAgAosNurxXbjX4czlu8584jlC/view?usp=sharing" target="_blank" class="btn btn-main">Uygulamayı İndir</a>
+                        <a href="Fikimatik.pdf" target="_blank" class="btn btn-pdf">PDF Rapor</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <span class="tag">Ulaşımda Yapay Zeka</span>
+                        <h3>OTAR-V2X</h3>
+                        <p>YOLOv8 ve ArUco markerları kullanan araçlar arası proaktif trafik denetleme ve güvenlik sistemi.</p>
+                    </div>
+                    <div class="btn-group">
+                        <a href="OtarV2x.apk" download class="btn btn-main">Android APK İndir</a>
+                        <a href="OtarV2x.pdf" target="_blank" class="btn btn-pdf">PDF Rapor</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <span class="tag">Tarım Teknolojileri</span>
+                        <h3>Toprağın Nabzı v2.0</h3>
+                        <p>Yapay zeka destekli akıllı tarımsal prob ile toprak verimliliği ve analiz sistemi.</p>
+                    </div>
+                    <div class="btn-group">
+                        <a href="TopraginNabzi.pdf" target="_blank" class="btn btn-pdf" style="grid-column: span 2;">Raporu Görüntüle (PDF)</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="hakkimda">
+            <h2 class="section-title">Vizyon</h2>
+            <div style="background: rgba(0,0,0,0.2); padding: 30px; border-radius: 20px; line-height: 1.8;">
+                <p>Abidin Pak Pakmaya Anadolu Lisesi'nde Matematik Öğretmeni olarak görev yapmaktayım. Millî Teknoloji Hamlesi'ne katkı sunmayı hedefliyorum.</p>
+                <p>Unity, C# ve Python dilleriyle eğitim, ulaşım ve tarım teknolojilerine odaklanmaktayım.</p>
+            </div>
+        </section>
+        <section id="iletisim" style="text-align: center; margin-top: 50px;">
+            <h2 style="color: var(--primary);">İletişim</h2>
+            <p>📧 edomat66sar@gmail.com</p>
+            <p>📍 Edremit / Balıkesir</p>
+        </section>
+    </div>
+    <footer>
+        &copy; 2026 Erdem Sarıyıldız | Millî Teknoloji Hamlesi İçin Üretiyoruz.
+    </footer>
+</body>
+</html>
