@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erdem Sarıyıldız | TEKNOFEST Projeleri</title>
+    <title>Erdem Sarıyıldız | Teknoloji ve Eğitim Portfolyosu</title>
     <style>
         :root {
             --primary: #00d2ff;
@@ -46,8 +46,9 @@
         .card h3 { color: var(--primary); margin: 0 0 10px 0; font-size: 1.4rem; }
         .card p { font-size: 0.95rem; opacity: 0.85; line-height: 1.6; }
         .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
-        .btn { padding: 12px; text-align: center; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 0.85rem; transition: 0.3s; }
+        .btn { padding: 12px; text-align: center; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 0.85rem; transition: 0.3s; cursor: pointer; }
         .btn-main { background: var(--primary); color: #0f172a; }
+        .btn-video { background: #ff9800; color: #0f172a; }
         .btn-pdf { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); }
         .btn:hover { opacity: 0.8; transform: scale(1.02); }
         .tag { font-size: 0.65rem; background: var(--accent); padding: 4px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 12px; display: inline-block; }
@@ -65,48 +66,59 @@
         <section id="baslik" class="header">
             <span class="tag">Millî Teknoloji Hamlesi</span>
             <h1>Erdem Sarıyıldız</h1>
-            <p style="font-size: 1.2rem; margin-top: 15px;">Matematik Öğretmeni | Yazılım Geliştirici</p>
+            <p style="font-size: 1.2rem; margin-top: 15px;">Matematik Öğretmeni | STEM & Yazılım Uzmanı</p>
         </section>
+
         <section id="projeler">
-            <h2 class="section-title">TEKNOFEST Projelerimiz</h2>
+            <h2 class="section-title">TEKNOFEST & TÜBİTAK Projeleri</h2>
             <div class="grid">
+                <!-- Medi-MR KARTI -->
                 <div class="card">
                     <div>
                         <span class="tag">Eğitim Teknolojileri</span>
                         <h3>Medi-MR: MR Anatomi</h3>
-                        <p>Karma gerçeklik ortamında 6 farklı anatomik sistemin incelenebildiği çok kullanıcılı eğitim simülasyonu.</p>
+                        <p>Karma gerçeklik ortamında 6 farklı anatomik sistemin Photon PUN 2 ile çok kullanıcılı incelenebildiği eğitim simülasyonu.</p>
                     </div>
                     <div class="btn-group">
-                        <a href="Medi_Mr.pdf" target="_blank" class="btn btn-pdf" style="grid-column: span 2;">Proje Detaylarını Oku (PDF)</a>
+                        <!-- NotebookLM Video Linki Buraya Eklendi -->
+                        <a href="https://notebooklm.google.com/notebook/a7122fb9-3c62-49bb-bf21-3eec8151520d/artifact/ab7e0b5d-09a3-4b90-bd7b-06eaf4aa77fa?utm_source=nlm_web_share&utm_medium=google_oo&utm_campaign=art_share_2&utm_content=&utm_smc=nlm_web_share_google_oo_art_share_2_" 
+                           target="_blank" class="btn btn-video" style="grid-column: span 2;">🎥 Tanıtım Videosunu İzle (AI)</a>
+                        <a href="Medi_Mr.pdf" target="_blank" class="btn btn-pdf" style="grid-column: span 2;">Proje Raporu (PDF)</a>
                     </div>
                 </div>
+
+                <!-- Fikimatik KARTI -->
                 <div class="card">
                     <div>
-                        <span class="tag">Eğitim Teknolojileri</span>
+                        <span class="tag">STEM Eğitimi</span>
                         <h3>Fikimatik</h3>
-                        <p>Unity tabanlı etkileşimli Fizik, Kimya ve Matematik simülasyon uygulaması.</p>
+                        <p>Unity tabanlı etkileşimli Fizik, Kimya ve Matematik simülasyonları ile yapılandırmacı öğrenme modeli uygulaması.</p>
                     </div>
                     <div class="btn-group">
                         <a href="https://drive.google.com/file/d/1BSaBHxzAgAosNurxXbjX4czlu8584jlC/view?usp=sharing" target="_blank" class="btn btn-main">Uygulamayı İndir</a>
                         <a href="Fikimatik.pdf" target="_blank" class="btn btn-pdf">PDF Rapor</a>
                     </div>
                 </div>
+
+                <!-- OTAR-V2X KARTI -->
                 <div class="card">
                     <div>
-                        <span class="tag">Ulaşımda Yapay Zeka</span>
+                        <span class="tag">Akıllı Ulaşım</span>
                         <h3>OTAR-V2X</h3>
-                        <p>YOLOv8 ve ArUco markerları kullanan araçlar arası proaktif trafik denetleme ve güvenlik sistemi.</p>
+                        <p>YOLOv8 ve ArUco marker teknolojilerini birleştiren, V2X konseptli proaktif trafik güvenlik sistemi.</p>
                     </div>
                     <div class="btn-group">
                         <a href="OtarV2x.apk" download class="btn btn-main">Android APK İndir</a>
                         <a href="OtarV2x.pdf" target="_blank" class="btn btn-pdf">PDF Rapor</a>
                     </div>
                 </div>
+
+                <!-- Toprağın Nabzı KARTI -->
                 <div class="card">
                     <div>
                         <span class="tag">Tarım Teknolojileri</span>
                         <h3>Toprağın Nabzı v2.0</h3>
-                        <p>Yapay zeka destekli akıllı tarımsal prob ile toprak verimliliği ve analiz sistemi.</p>
+                        <p>Yapay zeka destekli akıllı prob ünitesi ile gerçek zamanlı toprak analizi ve verimlilik optimizasyonu.</p>
                     </div>
                     <div class="btn-group">
                         <a href="TopraginNabzi.pdf" target="_blank" class="btn btn-pdf" style="grid-column: span 2;">Raporu Görüntüle (PDF)</a>
@@ -114,21 +126,23 @@
                 </div>
             </div>
         </section>
+
         <section id="hakkimda">
-            <h2 class="section-title">Vizyon</h2>
+            <h2 class="section-title">Vizyon ve Hedefler</h2>
             <div style="background: rgba(0,0,0,0.2); padding: 30px; border-radius: 20px; line-height: 1.8;">
-                <p>Abidin Pak Pakmaya Anadolu Lisesi'nde Matematik Öğretmeni olarak görev yapmaktayım. Millî Teknoloji Hamlesi'ne katkı sunmayı hedefliyorum.</p>
-                <p>Unity, C# ve Python dilleriyle eğitim, ulaşım ve tarım teknolojilerine odaklanmaktayım.</p>
+                <p>Abidin Pak Pakmaya Anadolu Lisesi bünyesinde, öğrencilerimi Millî Teknoloji Hamlesi doğrultusunda geleceğin dünyasına hazırlıyorum.</p>
+                <p>Unity 6000, C#, Python ve Yapay Zeka entegrasyonları kullanarak; eğitimde fırsat eşitliğini artıran simülasyonlar ve toplumsal sorunlara çözüm üreten akıllı sistemler geliştirmeye devam ediyorum.</p>
             </div>
         </section>
+
         <section id="iletisim" style="text-align: center; margin-top: 50px;">
             <h2 style="color: var(--primary);">İletişim</h2>
             <p>📧 edomat66sar@gmail.com</p>
-            <p>📍 Edremit / Balıkesir</p>
+            <p>📍 Abidin Pak Pakmaya Anadolu Lisesi | Balıkesir</p>
         </section>
     </div>
     <footer>
-        &copy; 2026 Erdem Sarıyıldız | Millî Teknoloji Hamlesi İçin Üretiyoruz.
+        &copy; 2026 Erdem Sarıyıldız | Geleceği Kodlayan Gençlerle Birlikte.
     </footer>
 </body>
 </html>
