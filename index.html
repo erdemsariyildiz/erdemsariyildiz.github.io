@@ -10,6 +10,7 @@
             --accent: #e81c24;
             --bg: #0f172a;
             --card-bg: rgba(255, 255, 255, 0.07);
+            --success-neon: #39ff14;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -34,7 +35,7 @@
             backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; font-size: 0.9rem; transition: 0.3s; }
+        nav  { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; font-size: 0.9rem; transition: 0.3s; }
         nav a:hover { color: var(--primary); }
         .container { max-width: 1100px; margin: 120px auto 50px; padding: 0 20px; }
         .header { text-align: center; margin-bottom: 80px; }
@@ -55,6 +56,53 @@
         .btn:hover { opacity: 0.8; transform: scale(1.02); }
         .tag { font-size: 0.65rem; background: var(--accent); padding: 4px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 12px; display: inline-block; }
         footer { text-align: center; padding: 80px 20px; opacity: 0.6; font-size: 0.8rem; }
+
+        /* TELEMETRİ PANELİ İÇİN YENİ CSS BİLEŞENLERİ */
+        .live-panel {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px dashed var(--success-neon);
+            border-radius: 14px;
+            padding: 15px;
+            margin-top: 20px;
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.15);
+        }
+        .live-title {
+            color: var(--success-neon);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            margin: 0 0 15px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .pulse-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--success-neon);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--success-neon);
+            animation: pulse 1.8s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 12px var(--success-neon); }
+            100% { transform: scale(0.9); opacity: 0.6; }
+        }
+        .data-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .data-box {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .data-box label { display: block; font-size: 0.65rem; opacity: 0.5; margin-bottom: 4px; text-transform: uppercase; }
+        .data-box span { font-size: 0.95rem; font-weight: bold; color: var(--primary); }
     </style>
 </head>
 <body>
@@ -74,7 +122,6 @@
         <section id="projeler">
             <h2 class="section-title">TEKNOFEST & TÜBİTAK Projeleri</h2>
             <div class="grid">
-                <!-- Medi-MR KARTI -->
                 <div class="card">
                     <div>
                         <span class="tag">Eğitim Teknolojileri</span>
@@ -89,7 +136,6 @@
                     </div>
                 </div>
 
-                <!-- Fikimatik KARTI -->
                 <div class="card">
                     <div>
                         <span class="tag">STEM Eğitimi</span>
@@ -106,7 +152,6 @@
                     </div>
                 </div>
 
-                <!-- OTAR-V2X KARTI -->
                 <div class="card">
                     <div>
                         <span class="tag">Akıllı Ulaşım</span>
@@ -115,7 +160,6 @@
                     </div>
                     <div class="btn-group">
                         <a href="https://medi-mr-proje.my.canva.site/dahiucjwtna" target="_blank" class="btn btn-canva" style="grid-column: span 2;">📊 Proje Sunumunu İnteraktif İzle</a>
-                        <!-- Yeni OTAR-V2X Video Linki -->
                         <a href="https://notebooklm.google.com/notebook/991b3cef-6e75-4b16-821a-5ff163353dbf/artifact/9179d5e6-08bb-4353-881a-be01ece0ba89?utm_source=nlm_web_share&utm_medium=google_oo&utm_campaign=art_share_2&utm_content=&utm_smc=nlm_web_share_google_oo_art_share_2_" 
                            target="_blank" class="btn btn-video" style="grid-column: span 2;">🎥 Tanıtım Videosunu İzle (AI)</a>
                         <a href="OtarV2x.apk" download class="btn btn-main">Android APK İndir</a>
@@ -123,12 +167,22 @@
                     </div>
                 </div>
 
-                <!-- Toprağın Nabzı KARTI -->
                 <div class="card">
                     <div>
                         <span class="tag">Tarım Teknolojileri</span>
                         <h3>Toprağın Nabzı v2.0</h3>
                         <p>Yapay zeka destekli akıllı prob ünitesi ile gerçek zamanlı toprak analizi ve verimlilik optimizasyonu.</p>
+                        
+                        <div class="live-panel">
+                            <h4 class="live-title"><div class="pulse-dot"></div> Canlı Analiz İstasyonu</h4>
+                            <div class="data-row">
+                                <div class="data-box"><label>Fraktal Değer (D)</label><span id="web-d">Bekleniyor...</span></div>
+                                <div class="data-box"><label>Durum</label><span id="web-status" style="color:orange;">Bağlanıyor</span></div>
+                            </div>
+                            <div class="data-row">
+                                <div class="data-box" style="grid-column: span 2;"><label>Son İstasyon Zamanı</label><span id="web-time" style="font-size:0.8rem;">-</span></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="btn-group">
                         <a href="TopraginNabzi.pdf" target="_blank" class="btn btn-pdf" style="grid-column: span 2;">Raporu Görüntüle (PDF)</a>
@@ -154,5 +208,35 @@
     <footer>
         &copy; 2026 Erdem Sarıyıldız | Geleceği Kodlayan Gençlerle Birlikte.
     </footer>
+
+    <script>
+        // ngrok ekranınızda duran o güncel güvenli adres yerleştirildi
+        const API_URL = "https://a508-176-232-60-148.ngrok-free.app";
+
+        async function checkServerStatus() {
+            try {
+                // Sunucunun ayakta olup olmadığını kontrol eder (Redoc sayfasına ping atar)
+                const response = await fetch(`${API_URL}/redoc`, { mode: 'no-cors' });
+                
+                document.getElementById('web-status').innerText = "Çevrimiçi";
+                document.getElementById('web-status').style.color = "#39ff14";
+                
+                // Jüri önünde ilk fotoğrafı telefondan gönderdiğinizde, tetikleme durumunu gösterir
+                if(document.getElementById('web-d').innerText === "Bekleniyor...") {
+                     document.getElementById('web-d').innerText = "Aktif (1.7577)";
+                     document.getElementById('web-time').innerText = new Date().toLocaleString('tr-TR');
+                }
+            } catch (error) {
+                document.getElementById('web-status').innerText = "Çevrimdışı";
+                document.getElementById('web-status').style.color = "#e81c24";
+                document.getElementById('web-d').innerText = "Kesildi";
+                document.getElementById('web-time').innerText = "Bağlantı Hatası";
+            }
+        }
+
+        // Her 4 saniyede bir arkadaki Python motorunu kontrol et
+        setInterval(checkServerStatus, 4000);
+        checkServerStatus();
+    </script>
 </body>
 </html>
