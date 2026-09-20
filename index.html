@@ -125,4 +125,120 @@
         <a href="#baslik">Giriş</a>
         <a href="#proje">Proje</a>
         <a href="#canli-kontrol">Canlı Kontrol</a>
-        <a
+        <a href="#iletisim">İletişim</a>
+    </nav>
+    <div class="container">
+        <section id="baslik" class="header">
+            <span class="tag">TÜBİTAK 2204-A · Doğal Afet & Uzaktan Algılama</span>
+            <h1>Kazdağı Yangın Erken Uyarı Sistemi</h1>
+            <p style="font-size: 1.1rem; margin-top: 15px; opacity: 0.85;">Uydu Tabanlı Verilerle Erken Orman Yangını Tespiti ve Yapay Zekâ Destekli Coğrafi Risk Haritalaması</p>
+        </section>
+
+        <section id="proje">
+            <h2 class="section-title">Proje Hakkında</h2>
+            <div class="card">
+                <p>Kazdağı ve çevresindeki orman alanlarında çıkan yangınların NASA FIRMS uydu verisiyle erken tespitini amaçlayan bu proje, bölgenin coğrafi ve meteorolojik özelliklerine dayalı bir yangın risk haritası da üretiyor. Sistem, hiçbir fiziksel sensör veya kamera kurulumu gerektirmeden, tamamen halka açık uydu verisini işleyerek çalışıyor; 2021, 2023 ve 2026 yıllarına ait dört gerçek Kazdağı yangınıyla doğrulandı.</p>
+            </div>
+        </section>
+
+        <section id="canli-kontrol">
+            <h2 class="section-title">Canlı Yangın Kontrolü</h2>
+            <div class="card">
+                <p style="margin-bottom: 0;">Aşağıdaki panel, Kazdağı çalışma alanını NASA FIRMS'in güncel uydu verisiyle otomatik olarak kontrol eder.</p>
+
+                <div class="live-panel" id="kazdagi-panel">
+                    <h4 class="live-title" id="kazdagi-baslik"><div class="pulse-dot"></div> Canlı Yangın Kontrolü</h4>
+                    <div class="data-row">
+                        <div class="data-box"><label>Durum</label><span id="kazdagi-durum">Bekleniyor…</span></div>
+                        <div class="data-box"><label>Sıcak Nokta</label><span id="kazdagi-sayi">-</span></div>
+                    </div>
+                    <div class="data-row">
+                        <div class="data-box" style="grid-column: span 2;"><label>Son Kontrol</label><span id="kazdagi-zaman" style="font-size:0.8rem;">-</span></div>
+                    </div>
+                    <button class="yenile-btn" id="kazdagi-yenile-btn" onclick="checkKazdagiFireStatus()">Şimdi Kontrol Et</button>
+                </div>
+                <p class="not-metni">Kaynak: NASA FIRMS (VIIRS_SNPP_NRT). Bu gösterge bir erken tespit sinyalidir; kesin bir yangın teyidi değildir ve resmî afet bilgisi yerine geçmez. Sayfa açık kaldığı sürece 5 dakikada bir otomatik yenilenir.</p>
+
+                <div class="btn-group">
+                    <a href="Kazdagi.pdf" target="_blank" class="btn btn-pdf" style="grid-column: span 2;">Proje Raporu (PDF)</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="iletisim" style="text-align: center; margin-top: 50px;">
+            <h2 style="color: var(--primary);">İletişim</h2>
+            <p>📧 edomat66sar@gmail.com</p>
+            <p>📍 Abidin Pak Pakmaya Anadolu Lisesi | Balıkesir</p>
+        </section>
+    </div>
+    <footer>
+        &copy; 2026 Erdem Sarıyıldız | Kazdağı Yangın Erken Uyarı Sistemi.
+    </footer>
+
+    <script>
+        // Kendi Python (FastAPI) sunucunun ngrok adresi — "Toprağın Nabzı"
+        // panelinde kullandığın API_URL ile AYNI sunucu, sadece farklı bir uç nokta
+        // (bkz. kazdagi_yangin.py). Sunucun her yeniden başladığında ngrok adresi
+        // değişiyorsa bu satırı her seferinde güncellemen gerekir.
+        const KAZDAGI_API_URL = "https://SENIN-NGROK-ADRESIN.ngrok-free.app";
+
+        const KAZDAGI_RENKLER = {
+            sakin: { hex: "#39ff14", glow: "rgba(57, 255, 20, 0.15)" },
+            tespit: { hex: "#e81c24", glow: "rgba(232, 28, 36, 0.18)" },
+            uyari: { hex: "#ff9800", glow: "rgba(255, 152, 0, 0.18)" },
+        };
+
+        function setDurumRengi(durum) {
+            const r = KAZDAGI_RENKLER[durum];
+            const panel = document.getElementById('kazdagi-panel');
+            // --success-neon değişkenini panelin KENDİSİNDE geçersiz kılıyoruz;
+            // CSS özel özellikleri aşağıya (çerçeve kenarlığı + içindeki pulse
+            // noktası) miras kaldığı için ikisi de aynı anda renk değiştirir.
+            panel.style.setProperty('--success-neon', r.hex);
+            panel.style.boxShadow = `0 0 15px ${r.glow}`;
+            document.getElementById('kazdagi-baslik').style.color = r.hex;
+        }
+
+        async function checkKazdagiFireStatus() {
+            const durumEl = document.getElementById('kazdagi-durum');
+            const sayiEl = document.getElementById('kazdagi-sayi');
+            const zamanEl = document.getElementById('kazdagi-zaman');
+            const btn = document.getElementById('kazdagi-yenile-btn');
+
+            btn.disabled = true;
+            durumEl.innerText = "Kontrol ediliyor…";
+            setDurumRengi("uyari");
+
+            try {
+                const response = await fetch(`${KAZDAGI_API_URL}/kazdagi-yangin-durumu`);
+                const data = await response.json();
+
+                if (!data.ok) {
+                    throw new Error(data.error || "Bilinmeyen hata");
+                }
+
+                if (data.hasFire) {
+                    durumEl.innerText = "Sıcak Nokta Var";
+                    setDurumRengi("tespit");
+                    sayiEl.innerText = data.count + (data.maxFrp != null ? ` (FRP ${data.maxFrp.toFixed(1)})` : "");
+                } else {
+                    durumEl.innerText = "Bölge Sakin";
+                    setDurumRengi("sakin");
+                    sayiEl.innerText = "0";
+                }
+                zamanEl.innerText = new Date(data.checkedAt).toLocaleString('tr-TR');
+            } catch (error) {
+                durumEl.innerText = "Kontrol Edilemedi";
+                setDurumRengi("uyari");
+                sayiEl.innerText = "-";
+                zamanEl.innerText = "Bağlantı hatası";
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
+        checkKazdagiFireStatus();
+        setInterval(checkKazdagiFireStatus, 5 * 60 * 1000);
+    </script>
+</body>
+</html>
