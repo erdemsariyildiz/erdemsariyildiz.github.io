@@ -176,11 +176,8 @@
     </footer>
 
     <script>
-        // Kendi Python (FastAPI) sunucunun ngrok adresi — "Toprağın Nabzı"
-        // panelinde kullandığın API_URL ile AYNI sunucu, sadece farklı bir uç nokta
-        // (bkz. kazdagi_yangin.py). Sunucun her yeniden başladığında ngrok adresi
-        // değişiyorsa bu satırı her seferinde güncellemen gerekir.
-        const KAZDAGI_API_URL = "https://44c6-217-131-75-18.ngrok-free.app";
+        // Cloudflare Worker adresi — 7/24 açık, bilgisayarına ihtiyaç yok.
+        const KAZDAGI_API_URL = "https://shiny-morning-ffe4.edomat66sar.workers.dev";
 
         const KAZDAGI_RENKLER = {
             sakin: { hex: "#39ff14", glow: "rgba(57, 255, 20, 0.15)" },
@@ -210,9 +207,7 @@
             setDurumRengi("uyari");
 
             try {
-                const response = await fetch(`${KAZDAGI_API_URL}/kazdagi-yangin-durumu`, {
-                    headers: { "ngrok-skip-browser-warning": "true" }
-                });
+                const response = await fetch(KAZDAGI_API_URL);
                 const data = await response.json();
 
                 if (!data.ok) {
