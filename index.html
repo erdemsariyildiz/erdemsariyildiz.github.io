@@ -210,7 +210,9 @@
             setDurumRengi("uyari");
 
             try {
-                const response = await fetch(`${KAZDAGI_API_URL}/kazdagi-yangin-durumu`);
+                const response = await fetch(`${KAZDAGI_API_URL}/kazdagi-yangin-durumu`, {
+                    headers: { "ngrok-skip-browser-warning": "true" }
+                });
                 const data = await response.json();
 
                 if (!data.ok) {
